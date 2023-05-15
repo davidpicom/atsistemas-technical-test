@@ -34,4 +34,11 @@ public class H2DbPriceRepository implements PriceRepository {
         return priceMapper.toDomainList(pricesList);
     }
 
+    @Override
+    public Optional<Price> findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(Long productId, Long brandId, LocalDateTime date) {
+        Instant instant = Timestamp.valueOf(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).toInstant();
+        Date queryDate = Date.from(instant);
+        return Optional.ofNullable(priceMapper.toDomain(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(productId, brandId, queryDate)));
+    }
+
 }

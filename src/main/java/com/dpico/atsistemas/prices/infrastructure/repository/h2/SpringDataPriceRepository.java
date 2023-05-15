@@ -16,4 +16,14 @@ public interface SpringDataPriceRepository extends JpaRepository<PriceEntity, Lo
             @Param("brandId") Long brandId,
             @Param("date") Date date);
 
+    @Query(value = "SELECT * FROM PRICES p " +
+            "WHERE p.product_id = :productId " +
+            "AND p.brand_id = :brandId " +
+            "AND :date BETWEEN p.start_date AND p.end_date " +
+            "ORDER BY p.priority DESC LIMIT 1", nativeQuery = true)
+    PriceEntity findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(
+            @Param("productId") Long productId,
+            @Param("brandId") Long brandId,
+            @Param("date") Date date);
+
 }

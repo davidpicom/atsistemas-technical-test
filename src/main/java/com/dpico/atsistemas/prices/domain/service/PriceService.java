@@ -8,4 +8,6 @@ import java.util.*;
 public interface PriceService {
 
     Optional<Price> getPriceForProductAndBrandAndDate(Long productId, Long brandId, LocalDateTime date);
+
+    Optional<Price> getPriceForProductAndBrandAndDateAndPriority(Long productId, Long brandId, LocalDateTime date);
 }

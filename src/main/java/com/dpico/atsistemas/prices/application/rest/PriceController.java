@@ -33,7 +33,7 @@ public class PriceController {
     public ResponseEntity<PriceResponse> getPrice(@RequestParam Long productId,
                                                   @RequestParam Long brandId,
                                                   @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") LocalDateTime date){
-        Optional<Price> optionalPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, date);
+        Optional<Price> optionalPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, date);
         return optionalPrice
                 .map(price -> new ResponseEntity<>(priceMapper.toResponse(price), HttpStatus.OK))
                 .orElseThrow(() -> new RecordNotFoundException("No Price found for productId: " + productId + ", brandId: " + brandId + ", date: " + date));

@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(H2Configuration.class)
-public class H2DbPriceRepositoryTest {
+class H2DbPriceRepositoryTest {
 
     @Autowired
     private SpringDataPriceRepository priceRepository;
@@ -68,39 +68,39 @@ public class H2DbPriceRepositoryTest {
     }
 
     @Test
-    void shouldFindByProductIdAndBrandIdAndBetweenStartDateAndEndDate_thenReturnRecord1() {
+    void shouldFindPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority_thenReturnRecord1() {
         final Date testDate = Timestamp.valueOf(LocalDateTime.of(2020, 6, 14, 0, 0, 0));
 
-        final List<PriceEntity> pricesList = priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate);
+        final PriceEntity price = priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(productId, brandId, testDate);
 
-        assertThat(pricesList).hasSize(1).contains(record1);
+        assertThat(price).isEqualTo(record1);
     }
 
     @Test
-    void shouldFindByProductIdAndBrandIdAndBetweenStartDateAndEndDate_thenReturnRecord1AndRecord2() {
+    void shouldFindPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority_thenReturnRecord1AndRecord2() {
         final Date testDate = Timestamp.valueOf(LocalDateTime.of(2020, 6, 14, 16, 0, 0));
 
-        final List<PriceEntity> pricesList = priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate);
+        final PriceEntity price = priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(productId, brandId, testDate);
 
-        assertThat(pricesList).hasSize(2).contains(record1, record2);
+        assertThat(price).isEqualTo(record2);
     }
 
     @Test
-    void shouldFindByProductIdAndBrandIdAndBetweenStartDateAndEndDate_thenReturnRecord1AndRecord3() {
+    void shouldFindPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority_thenReturnRecord1AndRecord3() {
         final Date testDate = Timestamp.valueOf(LocalDateTime.of(2020, 6, 15, 10, 0, 0));
 
-        final List<PriceEntity> pricesList = priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate);
+        final PriceEntity price = priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(productId, brandId, testDate);
 
-        assertThat(pricesList).hasSize(2).contains(record1, record3);
+        assertThat(price).isEqualTo(record3);
     }
 
     @Test
-    void shouldFindByProductIdAndBrandIdAndBetweenStartDateAndEndDate_thenReturnRecord1AndRecord4() {
+    void shouldFindPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority_thenReturnRecord1AndRecord4() {
         final Date testDate = Timestamp.valueOf(LocalDateTime.of(2020, 6, 16, 21, 0, 0));
 
-        final List<PriceEntity> pricesList = priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate);
+        final PriceEntity price = priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriority(productId, brandId, testDate);
 
-        assertThat(pricesList).hasSize(2).contains(record1, record4);
+        assertThat(price).isEqualTo(record4);
     }
 
     @Test

@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ComponentScan(basePackages = {"com.dpico.atsistemas.prices.infrastructure", "com.dpico.atsistemas.prices.application"})
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PriceControllerTest {
+class PriceControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

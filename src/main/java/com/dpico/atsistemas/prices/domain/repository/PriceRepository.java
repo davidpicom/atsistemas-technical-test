@@ -21,4 +21,6 @@ public interface PriceRepository {
      */
     List<Price> findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(Long productId, Long brandId, LocalDateTime date);
 
+    Optional<Price> findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(Long productId, Long brandId, LocalDateTime date);
+
 }

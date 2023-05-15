@@ -11,7 +11,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class DomainPriceServiceTest {
+class DomainPriceServiceTest {
 
     private PriceRepository priceRepository;
 
@@ -63,12 +63,12 @@ public class DomainPriceServiceTest {
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 14, 0, 0, 0);
 
         // Repository data
-        List<Price> prices = List.of(record1);
-        when(priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate))
-                .thenReturn(prices);
+        Optional<Price> price = Optional.of(record1);
+        when(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, testDate))
+                .thenReturn(price);
 
         // Expected result
-        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate);
+        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, testDate);
 
         assertEquals(record1, serviceResultPrice.get());
     }
@@ -79,12 +79,12 @@ public class DomainPriceServiceTest {
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 14, 16, 0, 0);
 
         // Repository data
-        List<Price> prices = List.of(record1, record2);
-        when(priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate))
-                .thenReturn(prices);
+        Optional<Price> price = Optional.of(record2);
+        when(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, testDate))
+                .thenReturn(price);
 
         // Expected result
-        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate);
+        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, testDate);
 
         assertEquals(record2, serviceResultPrice.get());
     }
@@ -95,12 +95,12 @@ public class DomainPriceServiceTest {
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 14, 21, 0, 0);
 
         // Repository data
-        List<Price> prices = List.of(record1);
-        when(priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate))
-                .thenReturn(prices);
+        Optional<Price> price = Optional.of(record1);
+        when(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, testDate))
+                .thenReturn(price);
 
         // Expected result
-        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate);
+        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, testDate);
 
         assertEquals(record1, serviceResultPrice.get());
     }
@@ -111,12 +111,12 @@ public class DomainPriceServiceTest {
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 15, 10, 0, 0);
 
         // Repository data
-        List<Price> prices = List.of(record1, record3);
-        when(priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate))
-                .thenReturn(prices);
+        Optional<Price> price = Optional.of(record3);
+        when(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, testDate))
+                .thenReturn(price);
 
         // Expected result
-        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate);
+        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, testDate);
 
         assertEquals(record3, serviceResultPrice.get());
     }
@@ -127,12 +127,12 @@ public class DomainPriceServiceTest {
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 16, 21, 0, 0);
 
         // Repository data
-        List<Price> prices = List.of(record1, record4);
-        when(priceRepository.findByProductIdAndBrandIdAndBetweenStartDateAndEndDate(productId, brandId, testDate))
-                .thenReturn(prices);
+        Optional<Price> price = Optional.of(record4);
+        when(priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, testDate))
+                .thenReturn(price);
 
         // Expected result
-        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate);
+        final Optional<Price> serviceResultPrice = priceService.getPriceForProductAndBrandAndDateAndPriority(productId, brandId, testDate);
 
         assertEquals(record4, serviceResultPrice.get());
     }

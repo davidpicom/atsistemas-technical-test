@@ -24,4 +24,9 @@ public class DomainPriceService implements PriceService {
                 .max(Comparator.comparingInt(Price::getPriority));
     }
 
+    @Override
+    public Optional<Price> getPriceForProductAndBrandAndDateAndPriority(Long productId, Long brandId, LocalDateTime date) {
+        return priceRepository.findPriceEntityByProductIdAndBrandIdAndBetweenStartDateAndEndDateAndPriorityNative(productId, brandId, date);
+    }
+
 }
