@@ -12,6 +12,4 @@ public interface PriceEntityMapper {
     Price toDomain(PriceEntity priceEntity);
 
     List<Price> toDomainList(List<PriceEntity> priceEntityList);
-
-    PriceEntity toEntity(Price price);
 }

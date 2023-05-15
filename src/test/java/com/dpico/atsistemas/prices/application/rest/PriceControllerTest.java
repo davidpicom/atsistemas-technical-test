@@ -1,25 +1,19 @@
 package com.dpico.atsistemas.prices.application.rest;
 
 
-import com.dpico.atsistemas.prices.domain.model.*;
-import com.dpico.atsistemas.prices.domain.service.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.boot.test.context.*;
-import org.springframework.boot.test.mock.mockito.*;
 import org.springframework.context.annotation.*;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.result.*;
 
-import java.sql.*;
 import java.time.*;
 import java.time.format.*;
-import java.util.*;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -31,32 +25,14 @@ public class PriceControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private PriceService priceService;
-
-    private Price record2;
-
     private final long productId = 35455;
 
     private final long brandId = 1;
-
-    @BeforeEach
-    void setUp() {
-        record2 = Price.builder()
-                .id(2L).brandId(brandId)
-                .startDate(Timestamp.valueOf(LocalDateTime.of(2020, 6, 14, 15, 0, 0)))
-                .endDate(Timestamp.valueOf(LocalDateTime.of(2020, 6, 14, 18, 30, 0)))
-                .priceList(2L).productId(productId).priority(1).price(25.45F).curr("EUR")
-                .build();
-    }
 
     @Test
     void shouldReturnRecord2() throws Exception {
         // Test data
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 14, 16, 0, 0);
-
-        given(priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate))
-                .willReturn(Optional.of(record2));
 
         this.mockMvc.perform(get("/price")
                         .param("productId", String.valueOf(productId))
@@ -80,9 +56,6 @@ public class PriceControllerTest {
         // Test data
         final long productId = 354555;
         final LocalDateTime testDate = LocalDateTime.of(2020, 6, 14, 16, 0, 0);
-
-        given(priceService.getPriceForProductAndBrandAndDate(productId, brandId, testDate))
-                .willReturn(Optional.empty());
 
         this.mockMvc.perform(get("/price")
                         .param("productId", String.valueOf(productId))

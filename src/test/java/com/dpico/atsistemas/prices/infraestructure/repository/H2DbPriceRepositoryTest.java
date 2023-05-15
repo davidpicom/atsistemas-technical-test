@@ -22,9 +22,6 @@ public class H2DbPriceRepositoryTest {
     @Autowired
     private SpringDataPriceRepository priceRepository;
 
-    @Autowired
-    private TestEntityManager entityManager;
-
     private PriceEntity record1, record2, record3, record4;
 
     private final long productId = 35455;
